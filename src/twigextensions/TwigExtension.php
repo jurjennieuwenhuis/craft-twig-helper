@@ -94,6 +94,10 @@ class TwigExtension extends AbstractExtension
      */
     public function scrub(?string $text = null): Markup|string
     {
+        if (null === $text || '' === $text) {
+            return '';
+        }
+
         $newText = preg_replace('/<p>\xc2\xa0<\/p>/i', '', $text);
         $newText = preg_replace('/<p[^>]*?><\/p>/i', '', $newText);
         $newText = preg_replace('/<(p|h[1-6])><br \/><\/(p|h[1-6])>/i', '', $newText);
@@ -105,8 +109,12 @@ class TwigExtension extends AbstractExtension
     /**
      * Strip <p> tags from rich text field
      */
-    public function inline(string $var): Markup|string
+    public function inline(?string $var): Markup|string
     {
+        if ('' === $var || null === $var) {
+            return '';
+        }
+
         $newVar = preg_replace('/<p[^>]*?>/i', '', $var);
         $newVar = str_replace('</p>', '<br>', $newVar);
         $newVar = preg_replace('/<br>$/', '', $newVar);
@@ -114,7 +122,7 @@ class TwigExtension extends AbstractExtension
         return TemplateHelper::raw($newVar);
     }
 
-    public function monthIndex($monthName): int
+    public function monthIndex(string $monthName): int
     {
         return (int) date('m', strtotime($monthName));
     }
@@ -138,13 +146,21 @@ class TwigExtension extends AbstractExtension
     /**
      * Add the class 'lead' to the paragraph elements
      */
-    public function lead(string $var): Markup|string
+    public function lead(?string $var): Markup|string
     {
+        if (null === $var || '' === $var) {
+            return '';
+        }
+
         return TemplateHelper::raw($this->_addCssClass($var, 'lead'));
     }
 
-    public function typography(string $var): Markup|string
+    public function typography(?string $var): Markup|string
     {
+        if (null === $var || '' === $var) {
+            return '';
+        }
+
         $var = $this->_addCssClass($var, 'unordered-list', 'ul');
         $var = $this->_addCssClass($var, 'ordered-list', 'ol');
         $var = $this->_addCssClass($var, 'table table-striped table-hover', 'table');
