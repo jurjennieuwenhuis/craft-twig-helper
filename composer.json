@@ -1,0 +1,54 @@
+{
+  "name": "juni/craft-twig-helper",
+  "description": "Twig Helper plugin.",
+  "type": "craft-plugin",
+  "version": "1.0.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "twig",
+    "twig-helper"
+  ],
+  "license": "mit",
+  "support": {
+    "email": "jurjennieuwenhuis@gmail.com"
+  },
+  "require": {
+    "craftcms/cms": "^5.0.0"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main",
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "juni\\twighelper\\": "src/"
+    }
+  },
+  "extra": {
+    "handle": "juni-twig-helper",
+    "name": "Twig Helper",
+    "developer": "Jurjen Nieuwenhuis",
+    "class": "juni\\twighelper\\TwigHelper"
+  },
+  "scripts": {
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --ansi --fix",
+    "phpstan": "phpstan --memory-limit=1G"
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
